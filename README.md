@@ -1,5 +1,5 @@
 # survivors-solace
-The text-based adventure-style game, Survivor's Solace, is my final project for the Programming Fundamentals course I was enrolled in. I utilized HTML, CSS, and Javascript.
+The text-based adventure-style game, Survivor's Solace, is my final project for the Programming Fundamentals course I was enrolled in. I utilized HTML, CSS, and JavaScript.
 
 While the first chapter is my final project, I do plan on continuing it as a personal one. 
 My motivation for creating this game was to apply everything I've learned in my first semester of the IT - Software Development program at CVTC. 
