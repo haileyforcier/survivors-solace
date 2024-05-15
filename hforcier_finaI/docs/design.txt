@@ -1,0 +1,346 @@
+
+1) PROBLEM STATEMENT
+  Design a program that will display a narrative and dialogue before prompting for players to 
+  choose what path they decide to go down, input the results, and output 
+  the next narrative, dialogue, and prompt path based on the previous choice.
+        
+
+2) NOUNS & VERBS 
+	
+	Nouns: narrative, dialogue, first choice, second choice, third choice, fourth choice
+
+  Verbs: display, prompt, choose, input, output
+
+3) DEFINING DIAGRAM (IPO)
+
+  INPUT:
+    narrative
+    dialogue 
+    choice1
+    choice2
+    choice3
+    choice4
+
+  PROCESSING: 
+    display narrative
+    display dialogue
+    prompt for choices
+    accept choice
+    input player results
+    output next narrative and choice based on choice path
+
+  OUTPUT:
+    choice1 reaction
+    choice2 reaction
+    choice3 reaction
+    choice4 reaction
+    next narrative
+    next dialogue
+
+4) SOLUTION ALGORITHM (Pseudocode)
+       
+  Main()
+    initialize choices as strings
+
+    display "Amidst a chaotic world consumed by the relentless tide of the 
+            undead, humanity is on the brink of extinction. Cities have fallen, 
+            governments have crumbled, and society as we knew it has vanished into 
+            the abyss."
+
+    display "You emerge as one of the survivors, navigating a desolate 
+            landscape plagued by death and decay in this post-apocalyptic world."
+
+    prompt user for name with "Before we begin, what would you like to be called?"
+    prompt "You want to be called name, is that correct?"
+
+      IF yes THEN 
+        continue to next step
+      ELSE IF no THEN 
+        return to prompt user for name 
+      ENDIF
+    
+    display "I have heard rumors about a sanctuary beyond the wall, whispers in 
+            the shadows. People say it is a place where civilization thrives, where the 
+            dead do not walk, and the living can breathe easily. But can I trust such 
+            tales? In a world where hope is as scarce as clean water, it is tempting to 
+            cling to any glimmer of salvation."
+
+    display "However, blind faith can be a dangerous thing. I have seen too many 
+            dreams crumble to dust in this wasteland. Yet, a part of me still dares to 
+            believe. A part of me hopes that maybe, just maybe, there is a chance for a 
+            better life beyond these walls. But until I see it with my own eyes, I will 
+            keep my skepticism close at hand. After all, in a world ruled by chaos and 
+            uncertainty, it pays to be cautious."
+
+    display "As you traverse through Silent Grove, you stumble upon a survivor.
+            He looks up at you."
+
+    display: "Survivor: You're lookin' for the Sanctuary, ain't ya?"
+
+    prompt choice1R as "Uh, yeah... How did you...?"
+    prompt choice2R as "What if I am? Do you know anything about it?"
+    prompt choice3R as "What's it to you? Why are you asking?"
+
+    IF choice1R, choice2R, choice3R === true THEN
+      output = goodSurvivor
+    ENDIF
+
+    IF output = goodSurvivor THEN
+      display 
+        "Survivor: I've seen that look before. The desperation, the hope in your eyes.
+        You ain't the first wanderer to come searchin' for it."
+    ENDIF
+
+    display "I see... So, do you know anything about it? About where it might be?"
+
+    display: "Survivor: Maybe I do, maybe I don't. But what's it worth to you?" as survivorTask
+
+    prompt choice1O as "I don't have much to offer. Can't you just tell me?"
+    prompt choice2O as "I'm not paying for information. I'll find my own way."
+    prompt choice3O as "What do you mean?"
+    prompt choice4O as "I'm willing to make a deal. What do you want in exchange?"
+
+    IF choice1O, choice2O > choice3O, choice4O THEN
+      output = onYourOwn
+    ENDIF
+
+    IF choice1O, choice2O < choice3O, choice4O THEN
+      output = dadGoldCoin
+    ENDIF
+
+    IF output = onYourOwn THEN
+      display "Then I guess you'll just have to keep searchin' on your own. Good luck, kid."
+      display "Fine by me. I'll find it on my own."
+      display "*Maybe I should think again about the offer from the survivor. 
+              The lost coin could help me on my journey. But he might be leading 
+              me on a wild goose chase. Or I could go west, where there's only 
+              miles of forest."
+
+      prompt choice1G as "Hey, about earlier... I'm sorry. I shouldn't have been 
+                          so quick to brush off your offer. The truth is, I could 
+                          use your help."
+      prompt choice2G as "Go west."
+
+      IF choice1G > choice2G THEN
+        return to dadGoldCoin
+      ENDIF
+
+      IF choice2G > choice1G THEN
+        display "You begin your journey west."
+        display "About an hour into the journey, a rustling noise emanates from the 
+        nearby bushes."
+        display "*Huh? What's that noise? It sounds like... someone or something is 
+                out there. Should I investigate? I could ignore it and keep 
+                heading west, or I could check it out.*"
+
+        prompt choice1B as "Investigate."
+        prompt choice2B as "Ignore it and keep moving" 
+
+        IF choice1B > choice2B THEN
+          display "You walk slowly towards the bush."
+          display "You hear the sound of footsteps behind them, growing louder with each 
+                  passing moment"
+          display "Turn around."
+          return to wrongChoice
+        ENDIF
+
+        display "*It's a horde of zombies! I need to get out of here, fast!*" as wrongChoice
+        display "Despite your best efforts, you are unable to escape the relentless 
+                pursuit of the zombies."
+        display "Your journey ends here, consumed by the zombie horde."
+        prompt "Restart." with yes button
+        return to start
+    ENDIF
+   
+    IF output = dadGoldCoin THEN
+      display ""I'm lookin' for a keepsake from before the Fall. Bring me my dad's gold 
+              coin and I'll give you the information you seek. It should be around 
+              here somewhere.""
+      display "I'll get it for you in no time." 
+      display "You begin to search the area, not quite sure where to look."
+      display "All I see in the area are an abandoned hut, a small cave, 
+              and a large boulder. Which one should I investigate first?" AS hutCaveBoulder
+
+      prompt choice1P as "Abandoned hut."
+      prompt choice2P as "Small cave."
+      prompt choice3P as "Large boulder."
+
+      IF choice1P > choice2P, choice3P THEN
+      output = abandonedHut
+      ENDIF
+
+      IF choice2P > choice1P, choice3P THEN
+        output = smallCave
+      ENDIF
+
+      IF choice3P > choice1P, choice2P THEN
+        output = largeBoulder
+      ENDIF
+
+      IF output = abandonedHut THEN
+        display "*The hut might hold some secrets. It's worth a closer look.*"
+        display "Where do I want to look" as searchHut
+
+        prompt choice1R as "Rug."
+        prompt choice2R as "Closet"
+        prompt choice3R as "Kitchen cabinets"
+
+        IF choice1R > choice2R, choice3R THEN
+          output = rug
+        ENDIF
+
+        IF choice2R > choice1R, choice3R THEN
+          output = closet
+        ENDIF
+
+        IF choice3P > choice1P, choice2P THEN
+          output = kitchenCabinet
+        ENDIF
+
+        IF output = rug THEN
+          display "You spot a glimmer of gold hidden beneath the dusty old rug."
+        ENDIF
+
+        IF output = closet THEN
+          display "No luck."
+          return to searchHut
+        ENDIF
+
+        IF output = kitchenCabinet THEN
+          display "No luck."
+          return to searchHut
+        ENDIF
+      ENDIF
+
+      IF output = smallCave THEN
+        display "*The cave seems like it could be hiding something valuable. 
+                I'll check it out.*"
+        display "You enter the cave. It's smaller than you thought."
+        display "*I can't see in here and it appears there are no crevices
+                for a coin to hide.*"
+        return to hutCaveBoulder
+      ENDIF 
+
+      IF output = largeBoulder THEN
+        display "*The boulder looks odd. Maybe there's something hidden underneath it.*"
+        display "You approach the large boulder, its imposing presence casting a 
+                  shadow over the surrounding area."
+        display "*This boulder weighs tons. What was I thinking?*"
+        return to hutCaveBoulder 
+      ENDIF 
+    ENDIF
+
+    display "*Found it! The gold coin was hiding right under my nose. Good thing 
+            I decided to explore this hut.*"
+    display "You carefully pocket the coin, ensuring its safe before heading back 
+            to the survivor."
+    display "Hey, here's the coin you asked for."
+    display "His eyes light up as he takes the coin."
+    display Survivor: "I got somethin' that might catch yer eye. Follow me."
+    display "You follow him to a shack that you are positive wasn't there 
+            earlier, but you brush it off."
+    display "Survivor: Found this while rummagin' through some old ruins. 
+            Looks like a piece of a map, but it's all torn up, see?"
+    display "You examine the map. It doesn't appear to be very conventional.
+            'Do you know where this leads?'"
+    display "Survivor: Not a clue, mate. But I reckon it's got somethin' worth 
+            findin'. And you, my friend, look like the sort who can piece 
+            it together."
+    display "You want me to find the missing pieces of the map?"
+    display "Survivor: That's right. I wish you luck."
+    display "There's a crash outside the shack, and you quickly turn around to 
+            investigate. It was just a squirrel."
+    display "'Will you accomp...' The survivor disappeared. He was just there a 
+            minute ago."
+    display "After the fact settles in, you brush it off and head back outside. 
+            You shudder and can't help but feel an odd presence nearby. A crow 
+            is sitting atop the shack."
+    display "You wonder if that may be... but stop yourself and chuckle. 
+            That's impossible."
+    display "After securing the torn piece of the map in your pack, you take one 
+            last look around at your surroundings. It's time to set off on the 
+            quest, in search of the next piece of the map. The crow flies away 
+            and a cool breeze rustles through the trees, carrying the promise of 
+            discovery and adventure, and your heart beats with anticipation."
+
+
+5) TEST CASES
+
+  VARIABLES: choices, dialogue, narrative
+
+      TEST CASE 1:
+        INPUT VALUES: choice1R
+          
+
+        YOUR EXPECTED RESULT: 
+        "Survivor: I've seen that look before. The desperation, the hope in your
+        eyes. You ain't the first wanderer to come searchin' for it."
+
+
+      TEST CASE 2:
+          INPUT VALUES: choice 1O
+            
+
+          YOUR EXPECTED RESULT:
+          "Survivor: Then I guess you'll just have to keep searchin' on your own. 
+          Good luck, kid."
+
+      TEST CASE 3:
+        INPUT VALUES: choice 3O
+         
+
+        YOUR EXPECTED RESULT:
+        "Survivor: "I'm lookin' for a keepsake from before the Fall. Bring me my dad's 
+        gold coin and I'll give you the information you seek. It should be around 
+        here somewhere."
+
+      TEST CASE 4:
+        INPUT VALUES: choice1G
+          
+
+        YOUR EXPECTED RESULT:
+        "Survivor: "I'm lookin' for a keepsake from before the Fall. Bring me my dad's 
+        gold coin and I'll give you the information you seek. It should be around 
+        here somewhere."
+
+      TEST CASE 5:
+        INPUT VALUES: choice2G
+          
+
+        YOUR EXPECTED RESULT:
+        "You begin your journey west."
+
+      TEST CASE 6:
+        INPUT VALUES: choice1B
+          
+
+        YOUR EXPECTED RESULT:
+        "You walk slowly towards the bush."
+
+      TEST CASE 7:
+        INPUT VALUES: choice2B
+          
+
+        YOUR EXPECTED RESULT:
+        "You continue walking west."
+
+      TEST CASE 8:
+        INPUT VALUES: choice1P
+          
+
+        YOUR EXPECTED RESULT:
+        "*The hut might hold some secrets. It's worth a closer look.*"
+
+      TEST CASE 9:
+        INPUT VALUES: choice2P
+          
+
+        YOUR EXPECTED RESULT:
+        "*The cave seems like it could be hiding something valuable. I'll check it out.*"
+
+      TEST CASE 10:
+        INPUT VALUES: choice3P
+          
+
+        YOUR EXPECTED RESULT:
+        "*The boulder looks odd. Maybe there's something hidden underneath it.*"
